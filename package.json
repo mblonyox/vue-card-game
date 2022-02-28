@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "boardgame.io": "^0.49.11",
     "vue": "^3.2.25"
   },
   "devDependencies": {

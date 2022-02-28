@@ -1,12 +1,28 @@
 <script setup lang="ts">
-import HandContainer from "./components/HandContainer.vue"
-let hands = []
+import { onMounted, onUnmounted, reactive } from "vue";
+import { Client } from "boardgame.io/client";
+import FourSoulsGame from "./game/four_souls";
+import Board from "./components/Board.vue";
+
+const state: any = reactive({
+  clientState: null,
+})
+
+let _unsubscribe: () => void;
+onMounted(() => {
+  const client = Client({ game: FourSoulsGame });
+  client.start();
+  _unsubscribe = client.subscribe((clientState) => state.clientState = clientState);
+})
+
+onUnmounted(() => {
+  _unsubscribe();
+})
+
 </script>
 
 <template>
-  <div class="board">
-    <HandContainer />
-  </div>
+  <Board />
 </template>
 
 <style scoped>

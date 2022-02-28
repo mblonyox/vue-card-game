@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import Card from "./Card.vue";
 const card_num = ref(5);
 </script>
 
@@ -9,7 +8,7 @@ const card_num = ref(5);
   <div class="hand-container">
     <TransitionGroup name="hand">
       <div class="card-container" v-for="item in card_num" :key="item">
-        <Card />
+        <div class="card" />
       </div>
     </TransitionGroup>
   </div>
@@ -42,5 +41,21 @@ const card_num = ref(5);
   width: 20px;
   opacity: 0;
   transform: translateY(-100px);
+}
+
+.card {
+  border-radius: 10px;
+  width: 260px;
+  height: 360px;
+  background-image: url(../assets/LootCardBack-308x420.png);
+  background-size: contain;
+  position: absolute;
+  top: -180px;
+  transition: 0.2s;
+}
+
+.card:hover {
+  cursor: grab;
+  top: -200px;
 }
 </style>
